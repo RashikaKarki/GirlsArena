@@ -1,7 +1,8 @@
 import sys, os
 from flask import Flask, flash, request, redirect, url_for, jsonify, send_file
 from flask_cors import CORS, cross_origin
-from data.powertofly import getdata
+from data.all_data import collect_data
+import encodings.idna
 
 sys.path = os.getcwd()
 
@@ -14,6 +15,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/opportunities', methods=['GET'])
 def generate_uml():
     if request.method == 'GET':
-        data = getdata()
+        data = collect_data()
+        print(data)
         return jsonify(data)
 
