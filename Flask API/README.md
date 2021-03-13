@@ -3,9 +3,7 @@
 The API gathers upcoming opportunities from various website and filters those opportunities that are more centered around women in tech. So far the API gathers data from:
 - [Power to fly](https://powertofly.com/events/)
 - [Hackerearth](https://www.hackerearth.com/challenges/?filters=competitive%2Chackathon%2Chiring%2Cuniversity)
-- [MLH Hackathon](https://mlh.io/seasons/2021/events)
 - [Youthop](https://www.youthop.com/browse)
-- [Google #IamRemarkable](https://events.withgoogle.com/iamremarkable-workshops-iwd-2021/registrations/new/)
 
 
 ## How to run Flask API?
@@ -29,6 +27,9 @@ The server will run on port `5000`
 
 - **API Call:** `http://127.0.0.1:5000/opportunities` or `https://geekygirls-api.herokuapp.com/opportunities`
 - **Request Method:** get 
+- **Query Parameters** : status=future or status=ongoing
+  - url: `http://127.0.0.1:5000/opportunities?status=future`
+  - url: `http://127.0.0.1:5000/opportunities?status=ongoing`
 - **Returns:** JSON
 ```javascript
 {
