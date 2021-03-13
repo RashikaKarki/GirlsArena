@@ -30,7 +30,7 @@ The server will run on port `5000`
 - **API Call:** `http://127.0.0.1:5000/opportunities` 
 - **Request Method:** get 
 - **Returns:** JSON
-'''
+```javascript
 {
   "0": {
     "name": "How I Moved My Career Forward Despite a Chronic Illness",
@@ -41,6 +41,6 @@ The server will run on port `5000`
     "end": "2021-03-15 18:00:00Z"
   }
 }
-'''
+```
 
 
