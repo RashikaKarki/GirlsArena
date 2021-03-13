@@ -42,5 +42,7 @@ def getdata():
     df['platform'] = ["powertofly"]*df.shape[0]
 
     data = df.to_dict(orient="index")
+    
+    
 
     return data

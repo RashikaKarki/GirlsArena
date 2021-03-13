@@ -107,7 +107,7 @@ const EventListItem = () => {
       <List>
         {data.map((d) => (
           <div>
-            {console.log(d)}
+            {/* {console.log(d)} */}
             <ListItem>
               <ListItemAvatar>
                 <Avatar alt={d.platform} src={d.image} />
