@@ -155,8 +155,10 @@ const EventListItem = ({ label, ind, num }) => {
     if (label === "ongoing") {
         finalresult = result1;
     }
-    else {
+    else if(label==="future"){
         finalresult = result2;
+    } else {
+        finalresult = [];
     }
 
   const classes = useStyles();
@@ -246,7 +248,7 @@ const EventListItem = ({ label, ind, num }) => {
                 <BookmarkBorderIcon
                   className={
                     checked.indexOf(index) !== -1
-                      ? classes.isBookmarkIcon
+                      ? classes.isBookmarkIcon 
                       : classes.bookmarkIcon
                   }
                   onClick={() => {
