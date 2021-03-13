@@ -7,7 +7,7 @@ import datetime
 '''
     Formats all the data into dict format
 '''
-def makedict(all_data, status):
+def makedict(all_data):
     df = pd.DataFrame()
     df['name'] = all_data["name"]
     df['link'] = all_data["link"]
@@ -26,12 +26,12 @@ def makedict(all_data, status):
     Collects data from all the sources and merge it
 '''
 
-def collect_data(status):
+def collect_data(status, search):
     #initialize variables for data collection
     all_data = dict()
     #calling data from different sources
     #powertofly
-    data_powertofly = getdata_powertofly(status)
+    data_powertofly = getdata_powertofly(status, search)
     all_data["name"] = data_powertofly[0]
     all_data["link"] = data_powertofly[1]
     all_data["image"] = data_powertofly[2]
@@ -40,7 +40,7 @@ def collect_data(status):
     all_data["end"] = data_powertofly[5]
     all_data["platform"] = ["powertofly"]*len(data_powertofly[0])  
     #returning formatted data
-    return makedict(all_data, status)
+    return makedict(all_data)
     
     
 

@@ -19,8 +19,9 @@ def generate_uml():
             status = request.args.get('status')
             if status == None:
                 status = "ongoing"
+            search = request.args.get('search')
         except:
             status = "ongoing"
-        data = collect_data(status)
+        data = collect_data(status, search)
         return jsonify(data)
 
