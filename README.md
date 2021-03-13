@@ -61,4 +61,4 @@ For more detail on Flask API go to this [link](https://github.com/RashikaKarki/S
 
 ## How to contribute?
 
-Take a look at the [contribution guidelines](https://github.com/RashikaKarki/SheHacks_Team-001/blob/main/Contribution.md and open a [new issue](https://github.com/RashikaKarki/SheHacks_Team-001/issues) or [pull request](https://github.com/RashikaKarki/SheHacks_Team-001/pulls) on GitHub.
+Take a look at the [contribution guidelines](https://github.com/RashikaKarki/SheHacks_Team-001/blob/main/Contribution.md) and open a [new issue](https://github.com/RashikaKarki/SheHacks_Team-001/issues) or [pull request](https://github.com/RashikaKarki/SheHacks_Team-001/pulls) on GitHub.
