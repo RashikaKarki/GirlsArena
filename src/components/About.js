@@ -21,8 +21,8 @@ const About = ()=>{
 return(
     
     <div className={classes.box}>
-        Hello
-        <EventListItem/>
+        
+       
     </div>
 )
 }

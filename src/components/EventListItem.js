@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
+import axios from "axios";
 
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -16,23 +17,11 @@ import EventIcon from "@material-ui/icons/Event";
 import Typography from "@material-ui/core/Typography";
 import AddToCalendar from "@culturehq/add-to-calendar";
 import "@culturehq/add-to-calendar/dist/styles.css";
-
-const startDatetime = moment().utc().add(2, "days");
-const endDatetime = startDatetime.clone().add(2, "hours");
-const duration = moment.duration(endDatetime.diff(startDatetime)).asHours();
-const event = {
-  description:
-    "Description of event. Going to have a lot of fun doing things that we scheduled ahead of time.",
-  duration,
-  endDatetime: endDatetime.format("YYYYMMDDTHHmmssZ"),
-  location: "NYC",
-  startDatetime: startDatetime.format("YYYYMMDDTHHmmssZ"),
-  title: "Super Fun Event",
-};
-
+var result = [];
 const useStyles = makeStyles((theme) => ({
   primary: {
-    marginTop: "2vh",
+        marginTop: "2vh",
+      marginLeft:"2px"
   },
   secondary: {
     margin: "1vh 1vw",
@@ -40,9 +29,13 @@ const useStyles = makeStyles((theme) => ({
   secondaryInner: {
     margin: "0 1vw",
   },
+  large: {
+    height: "100px",
+    width: "100px",
+  },
 }));
 
-const data = [
+const data2 = [
   {
     name: "How I Moved My Career Forward Despite a Chronic Illness",
     link:
@@ -99,21 +92,50 @@ const data = [
     platform: "powertofly",
   },
 ];
-const EventListItem = () => {
+const EventListItem = ({ label }) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  console.log("label", label);
+  const fetchData = () => {
+    setLoading(true);
+    fetch(`https://geekygirls-api.herokuapp.com/opportunities?status=${label}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+
+        for (var i in data) result.push(data[i]);
+
+        console.log("result", result);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
+  };
+
   const classes = useStyles();
   const theme = useTheme();
   return (
     <div>
       <List>
-        {data.map((d) => (
+        {result.map((d) => (
           <div>
             {/* {console.log(d)} */}
             <ListItem>
               <ListItemAvatar>
-                <Avatar alt={d.platform} src={d.image} />
+                <Avatar
+                  alt={d.platform}
+                  src={d.image}
+                  className={classes.large}
+                />
               </ListItemAvatar>
               <ListItemText
-                primary={<div className={classes.primary}>{d.name}</div>}
+                primary={<div className={classes.primary} style={{marginLeft:"24px"}}>{d.name}</div>}
                 secondary={
                   <div className={classes.secondary}>
                     <Typography className={classes.secondaryInner}>
@@ -144,11 +166,11 @@ const EventListItem = () => {
                 {/* <EventIcon className={classes.eventIcon} /> */}
                 <AddToCalendar
                   event={{
-                    name: "Happy Hour",
-                    details: "Let's go after work",
-                    location: "Boston, MA",
-                    startsAt: "2018-12-06T17:00:00-05:00",
-                    endsAt: "2018-12-06T18:00:00-05:00",
+                                name: d.name,
+                    details: d.tags,
+                    location: d.link,
+                    startsAt: d.start,
+                    endsAt: d.end,
                   }}
                 />
               </ListItemSecondaryAction>

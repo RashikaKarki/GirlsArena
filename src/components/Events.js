@@ -1,13 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import EventListItem from './EventListItem';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+import PropTypes from "prop-types";
+import SwipeableViews from "react-swipeable-views";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import EventListItem from "./EventListItem";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -38,26 +40,28 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
+    "aria-controls": `full-width-tabpanel-${index}`,
   };
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: '100vw',
+    width: "100vw",
   },
-  tabs:{
-      backgroundColor:'#81d4fa',
-      color:'white',
+  tabs: {
+    backgroundColor: "#81d4fa",
+    color: "white",
   },
-  tab:{
-      fontSize:'22px',
-      fontFamily:'Arial'
-  }
+  tab: {
+    fontSize: "22px",
+    fontFamily: "Arial",
+  },
 }));
 
-export default function Events({setLive}) {
+export default function Events() {
+ 
+  
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -81,25 +85,25 @@ export default function Events({setLive}) {
           aria-label="full width tabs example"
           className={classes.tabs}
         >
-          <Tab label="Ongoing" {...a11yProps(0)} className={classes.tab}/>
-          <Tab label="Future" {...a11yProps(1)}  className={classes.tab}/>
-          <Tab label="Past" {...a11yProps(2)}  className={classes.tab}/>
+          <Tab label="Ongoing" {...a11yProps(0)} className={classes.tab} />
+          <Tab label="Future" {...a11yProps(1)} className={classes.tab} />
+          <Tab label="Past" {...a11yProps(2)} className={classes.tab} />
         </Tabs>
       </AppBar>
       <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          {console.log("Set Live ", setLive)}
-          <EventListItem data={setLive}/>
+          
+          <EventListItem  label="ongoing" />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Future
+          <EventListItem  label="future" />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          Past
+          <EventListItem  label="past" />
         </TabPanel>
       </SwipeableViews>
     </div>

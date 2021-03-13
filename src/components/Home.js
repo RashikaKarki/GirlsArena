@@ -18,20 +18,18 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const Home = ({live})=>{
+const Home = ()=>{
     const classes = useStyles();
-    
     const theme = useTheme();
 
 return(
     
     <div className={classes.box}>
-        {console.log("Home data",live)}
         <div className={classes.search}>
         <Search />
         </div>
         <div>
-            <Events setLive={live}/>
+            <Events/>
         </div>
     </div>
 )
