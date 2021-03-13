@@ -88,4 +88,8 @@ def getdata_powertofly(status, search):
 
 
 
+    data = df.to_dict(orient="index")
+    
+
+
     
