@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useReducer, useEffect } from "react";
 import { useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
 import axios from "axios";
-
+import { BookmarkContext } from "../App";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Avatar from "@material-ui/core/Avatar";
@@ -17,11 +17,15 @@ import EventIcon from "@material-ui/icons/Event";
 import Typography from "@material-ui/core/Typography";
 import AddToCalendar from "@culturehq/add-to-calendar";
 import "@culturehq/add-to-calendar/dist/styles.css";
-var result = [];
+var result1 = [];
+var result2= [];
+var result3 = [];
+var finalresult = [];
+const reducer = (key) => key + 1;
 const useStyles = makeStyles((theme) => ({
   primary: {
-        marginTop: "2vh",
-      marginLeft:"2px"
+    marginTop: "2vh",
+    marginLeft: "2px",
   },
   secondary: {
     margin: "1vh 1vw",
@@ -32,6 +36,11 @@ const useStyles = makeStyles((theme) => ({
   large: {
     height: "100px",
     width: "100px",
+  },
+  isBookmarkIcon: {
+    color: "red",
+    //fill:'black'
+    // backgroundColor:'black'
   },
 }));
 
@@ -92,7 +101,7 @@ const data2 = [
     platform: "powertofly",
   },
 ];
-const EventListItem = ({ label }) => {
+const EventListItem = ({ label, ind, num }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -102,14 +111,14 @@ const EventListItem = ({ label }) => {
   console.log("label", label);
   const fetchData = () => {
     setLoading(true);
-    fetch(`https://geekygirls-api.herokuapp.com/opportunities?status=${label}`)
+    fetch("https://geekygirls-api.herokuapp.com/opportunities?status=ongoing")
       .then((response) => response.json())
       .then((data) => {
         setData(data);
 
-        for (var i in data) result.push(data[i]);
+        for (var i in data) result1.push(data[i]);
 
-        console.log("result", result);
+        console.log("result", result1);
         setLoading(false);
       })
       .catch((error) => {
@@ -117,16 +126,81 @@ const EventListItem = ({ label }) => {
         setLoading(false);
       });
   };
+      const [data2, setData2] = useState([]);
+    //  const [loading, setLoading] = useState(false);
+
+      useEffect(() => {
+        fetchData2();
+      }, []);
+      console.log("label", label);
+      const fetchData2 = () => {
+      //  setLoading(true);
+        fetch(
+          "https://geekygirls-api.herokuapp.com/opportunities?status=future"
+        )
+          .then((response) => response.json())
+          .then((data2) => {
+            setData(setData2);
+
+            for (var i in data2) result2.push(data2[i]);
+
+            console.log("result", result2);
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.log(error);
+          //  setLoading(false);
+          });
+      };
+    if (label === "ongoing") {
+        finalresult = result1;
+    }
+    else {
+        finalresult = result2;
+    }
 
   const classes = useStyles();
   const theme = useTheme();
+  const { setBookmark } = useContext(BookmarkContext);
+  const [id, updateId] = useReducer(reducer, 0);
+
+  const [checked, updateChecked] = useState(ind);
+
+  const handleToggle = (value) => {
+    console.log("in toggle", checked);
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+    updateChecked(newChecked);
+
+    if (num === 0) {
+      localStorage.setItem("liveIndex", newChecked);
+    } else if (num === 1) {
+      localStorage.setItem("futureIndex", newChecked);
+    } else if (num === 2) {
+      localStorage.setItem("pastIndex", newChecked);
+    }
+  };
+
+  function addBookmark(d) {
+    setBookmark({
+      d,
+      id: id,
+    });
+    updateId();
+  }
   return (
     <div>
       <List>
-        {result.map((d) => (
+        {finalresult.map((d, index) => (
           <div>
-            {/* {console.log(d)} */}
-            <ListItem onClick={() => window.open(d.link, "_blank")}>
+            {console.log("index", index)}
+            <ListItem onClick={() => window.open(d.link, "_blank")} key={index}>
               <ListItemAvatar>
                 <Avatar
                   alt={d.platform}
@@ -169,7 +243,18 @@ const EventListItem = ({ label }) => {
                 }
               />
               <ListItemSecondaryAction>
-                <BookmarkBorderIcon className={classes.bookmarkIcon} />
+                <BookmarkBorderIcon
+                  className={
+                    checked.indexOf(index) !== -1
+                      ? classes.isBookmarkIcon
+                      : classes.bookmarkIcon
+                  }
+                  onClick={() => {
+                    handleToggle(index);
+                    addBookmark(d);
+                    console.log("index2",checked.indexOf(index));
+                  }}
+                />
                 {/* <EventIcon className={classes.eventIcon} /> */}
                 <AddToCalendar
                   event={{
