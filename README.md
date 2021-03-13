@@ -15,7 +15,7 @@ According to research:
 
 Being a woman/girl in tech is never easy and just to make things a bit easier for all the amazing women and girls in tech we are centralizing all the events and opportunities for women in tech in one place so no one would ever miss out any opportunity and can access all of those information with ease.
 
-Finding an opprtunity 
+## Features: 
 
 ### Feature 1: 
 
