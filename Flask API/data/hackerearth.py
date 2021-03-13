@@ -19,7 +19,7 @@ def cleantime(date_time):
     Filter the data to see if they are women specific event
 '''
 def filterdata(info):
-    keywords = ["Women", "Girl", "Diversity"]
+    keywords = ["Women", "Girl", "Diversity", "Female"]
     for i in keywords:
         if i in info:
             return True
