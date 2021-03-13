@@ -50,6 +50,8 @@ Being a woman/girl in tech is never easy and just to make things a bit easier fo
 set FLASK_APP=server.py
 flask run
 ```
+For more detail on Flask API go to this [link](https://github.com/RashikaKarki/SheHacks_Team-001/blob/main/Flask%20API/README.md)
+
 
 ## How to contribute?
 
