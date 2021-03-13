@@ -1,6 +1,7 @@
 from data.powertofly import getdata_powertofly
 from data.hackerearth import getdata_hackerearth
 from data.youthop import getdata_youthop
+from data.tfidf import find_keyword
 import pandas as pd
 import datetime
 
@@ -12,12 +13,13 @@ def makedict(all_data):
     df['name'] = all_data["name"]
     df['link'] = all_data["link"]
     df['image'] = all_data["image"]
-    df['tags'] = all_data["tags"]
+    df["tags"] = all_data["tags"]
     df["start"] = all_data["start"]
     df["end"] = all_data["end"]
     df['start'] = df.loc[:,'start'].apply(lambda x: x.strftime("%m/%d/%Y, %H:%M:%S"))
     df['end'] = df.loc[:,'end'].apply(lambda x: x.strftime("%m/%d/%Y, %H:%M:%S"))
     df['platform'] = all_data["platform"]
+    df["additional tags"] = find_keyword(df)
     data = df.to_dict(orient="index")
     return data
 
