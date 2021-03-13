@@ -27,9 +27,12 @@ The server will run on port `5000`
 
 - **API Call:** `http://127.0.0.1:5000/opportunities` or `https://geekygirls-api.herokuapp.com/opportunities`
 - **Request Method:** get 
-- **Query Parameters** : status=future or status=ongoing
-  - url: `http://127.0.0.1:5000/opportunities?status=future`
-  - url: `http://127.0.0.1:5000/opportunities?status=ongoing`
+- **Query Parameters** : 
+  - status=future or status=ongoing
+     - url: `http://127.0.0.1:5000/opportunities?status=future`
+     - url: `http://127.0.0.1:5000/opportunities?status=ongoing`
+  - search=search%20keyword
+     - url: `http://127.0.0.1:5000/opportunities?search=career%20program`
 - **Returns:** JSON
 ```javascript
 {
