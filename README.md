@@ -21,9 +21,14 @@ Being a woman/girl in tech is never easy and just to make things a bit easier fo
 
 ## Features: 
 
-### Feature 1: 
+### Features: 
+- Sort the results based on the timeline of events
+- Add the events to your calender
+- Bookmark events
+- Subscribe to different organization or technical fields
+- Search for a particular event.
 
-### Feature 2:
+
 
 ## Built with:
 - React Js
@@ -42,10 +47,11 @@ Being a woman/girl in tech is never easy and just to make things a bit easier fo
 ## How to run locally?
 
 - Clone the repo
+- Move to the folder
 
-`git clone https://github.com/Open-Sourced-Olaf/vscode-github-projects.git`
-
-#### React JS APP
+#### To run frontend App
+- Install the npm packages by using the command `npm install`
+- Then we can run it using `npm start`
 
 
 ### Flask
