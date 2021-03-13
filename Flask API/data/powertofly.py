@@ -39,6 +39,7 @@ def getdata():
     df['tags'] = opportunity_tags
     df["start"] = opportuity_starttime
     df['end'] = opportuity_endtime
+    df['platform'] = ["powertofly"]*df.shape[0]
 
     data = df.to_dict(orient="index")
 
