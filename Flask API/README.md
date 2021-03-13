@@ -31,16 +31,16 @@ The server will run on port `5000`
 - **Request Method:** get 
 - **Returns:** JSON
 '''
-"results": {
-    "timestamp": 1615610999.132,
-    "ongoing": [
-      {
-        "name": ".....",
-        "url": ".....",
-        "platform": "......",
-        "startTime": .......,
-        "endTime": ......
-      },
+{
+  "0": {
+    "name": "How I Moved My Career Forward Despite a Chronic Illness",
+    "link": "https://events.powertofly.com/events/details/powertofly-chat-learn-presents-how-i-moved-my-career-forward-despite-a-chronic-illness/",
+    "image": "https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2,f_auto,g_face,h_400,q_auto:good,w_400/v1/gcs/platform-data-powertofly/events/Bevy%2520CL%2520thumbnails%2520v2%2520%25284%2529.png",
+    "tags": "Chat & Learn",
+    "start": "2021-03-15 17:00:00Z",
+    "end": "2021-03-15 18:00:00Z"
+  }
+}
 '''
 
 
