@@ -14,6 +14,15 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import EventIcon from '@material-ui/icons/Event';
 import Typography from '@material-ui/core/Typography';
 
+import AddToCalendar from 'react-add-to-calendar';
+let event = {
+    title: 'Sample Event',
+    description: 'This is the sample event provided as an example only',
+    location: 'Portland, OR',
+    startTime: '2016-09-16T20:15:00-04:00',
+    endTime: '2016-09-16T21:45:00-04:00'
+}
+
 const useStyles = makeStyles((theme) => ({
     primary:{
         marginTop:'2vh'
@@ -82,7 +91,6 @@ const EventListItem = ()=>{
                 {
                     data.map(d =>(
                         <div>
-                            {console.log(d)}
                         <ListItem>
                              <ListItemAvatar>
                                 <Avatar
@@ -108,6 +116,7 @@ const EventListItem = ()=>{
 
                                 <BookmarkBorderIcon className={classes.bookmarkIcon} />
                                 <EventIcon className={classes.eventIcon} />
+                                <AddToCalendar event={event} />
                             </ListItemSecondaryAction>
                         </ListItem>
                         <Divider inset={true} />
@@ -115,6 +124,8 @@ const EventListItem = ()=>{
                     ))
                 }
             </List>
+             
+        <AddToCalendar event={event} />
         </div>
         )
 }

@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Events() {
+export default function Events({setLive}) {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -92,7 +92,8 @@ export default function Events() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <EventListItem/>
+          {console.log("Set Live ", setLive)}
+          <EventListItem data={setLive}/>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           Future
