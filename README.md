@@ -1,10 +1,10 @@
-# SheCodes
+# GirlsArena
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![GitHub Issues](https://img.shields.io/github/issues/RashikaKarki/shehacks_team-001.svg)](https://github.com/RashikaKarki/SheHacks_Team-001/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/RashikaKarki/shehacks_team-001.svg)](https://github.com/RashikaKarki/SheHacks_Team-001/pulls)
 
-SheCodes is a web based application to help all the amazing women and girls to find various opportunites in tech. For now our application collects and filters data from these platforms:
+GirlsArena is a web based application to help all the amazing women and girls to find various opportunites in tech. For now our application collects and filters data from these platforms:
 - [powertofly](https://powertofly.com/events/)
 - [hackerearth](https://www.hackerearth.com/challenges/?filters=competitive%2Chackathon%2Chiring%2Cuniversity)
 - [youthop](https://www.youthop.com/browse)
