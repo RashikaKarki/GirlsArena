@@ -21,7 +21,6 @@ Being a woman/girl in tech is never easy and just to make things a bit easier fo
 
 ## Features: 
 
-### Features: 
 - Sort the results based on the timeline of events
 - Add the events to your calender
 - Bookmark events
