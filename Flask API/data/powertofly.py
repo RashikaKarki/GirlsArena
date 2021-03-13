@@ -8,6 +8,7 @@ import cssutils
 from dateutil import parser
 import datetime
 from dateutil.tz import tzutc
+import re
 
 '''
     Clean date time
@@ -33,6 +34,7 @@ def getdata_powertofly(status, search):
     opportunity_tags = []
     opportunity_starttime = []
     opportunity_endtime = []
+    opportunity_text = []
 
     for opportunity in opportunitiesList:
         try:
@@ -44,7 +46,6 @@ def getdata_powertofly(status, search):
             end = cleantime(opportunity.find("span", class_ = "date").get('data-ends-at'))
             if status == "ongoing":
                 if (end > datetime.datetime.now(tzutc())) and (end <= (datetime.datetime.now(tzutc())+ datetime.timedelta(days=10))):
-                    print(search)
                     if search == None:
                         opportunity_names.append(name)
                         opportunity_link.append(link)
@@ -84,7 +85,7 @@ def getdata_powertofly(status, search):
         except:
             print("Invalid Format")
         
-    return [opportunity_names, opportunity_link, opportunity_image, opportunity_tags, opportunity_starttime, opportunity_endtime]
+    return [opportunity_names, opportunity_link, opportunity_image, opportunity_tags, opportunity_starttime, opportunity_endtime, opportunity_text]
 
 
 
