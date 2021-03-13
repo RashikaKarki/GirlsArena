@@ -126,7 +126,7 @@ const EventListItem = ({ label }) => {
         {result.map((d) => (
           <div>
             {/* {console.log(d)} */}
-            <ListItem>
+            <ListItem onClick={() => window.open(d.link, "_blank")}>
               <ListItemAvatar>
                 <Avatar
                   alt={d.platform}
@@ -135,7 +135,14 @@ const EventListItem = ({ label }) => {
                 />
               </ListItemAvatar>
               <ListItemText
-                primary={<div className={classes.primary} style={{marginLeft:"24px"}}>{d.name}</div>}
+                primary={
+                  <div
+                    className={classes.primary}
+                    style={{ marginLeft: "24px" }}
+                  >
+                    {d.name}
+                  </div>
+                }
                 secondary={
                   <div className={classes.secondary}>
                     <Typography className={classes.secondaryInner}>
@@ -166,7 +173,7 @@ const EventListItem = ({ label }) => {
                 {/* <EventIcon className={classes.eventIcon} /> */}
                 <AddToCalendar
                   event={{
-                                name: d.name,
+                    name: d.name,
                     details: d.tags,
                     location: d.link,
                     startsAt: d.start,
