@@ -3,14 +3,14 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Header from './components/Header';
 import Home from "./components/Home";
-import Subscribe from "./components/Subscribe";
+import Subscribe from "./components/subscribe";
 import Bookmarks from "./components/Bookmarks";
 import About from "./components/About";
 
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./components/theme";
 
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 
 export default function App(){
