@@ -32,9 +32,9 @@ To any feature request, provide where possible:
 
 - Create a Github account.
 
-- Fork HackShare.
+- Fork the repo.
 
-This will create a copy of HackShare repository which will help you experiment with changes without affecting the original project. 
+This will create a copy of this repository which will help you experiment with changes without affecting the original project. 
 
 Detailed guide on how to fork a repository can be found [here](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo).
 
