@@ -27,7 +27,7 @@ The server will run on port `5000`
 
 ## How to call the Flask API?
 
-- **API Call:** `http://127.0.0.1:5000/opportunities` 
+- **API Call:** `http://127.0.0.1:5000/opportunities` or `https://geekygirls-api.herokuapp.com/opportunities`
 - **Request Method:** get 
 - **Returns:** JSON
 ```javascript
