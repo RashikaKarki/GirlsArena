@@ -12,7 +12,7 @@ from datetime import datetime
     Clean date time
 '''
 def cleantime(date_time):
-    date = parser.parse(date_time)
+    date = parser.parse(date_time).tz_convert(None)  
     return date
 
 '''

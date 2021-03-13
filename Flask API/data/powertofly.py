@@ -6,7 +6,8 @@ import time
 import requests
 import cssutils
 from dateutil import parser
-from datetime import datetime
+import datetime
+from dateutil.tz import tzutc
 
 '''
     Clean date time
@@ -18,7 +19,7 @@ def cleantime(date_time):
 '''
     Scrapes the website and collects the data
 '''
-def getdata_powertofly():
+def getdata_powertofly(status, search):
     url = "https://powertofly.com/events/"
 
     source = requests.get(url).text
@@ -41,16 +42,48 @@ def getdata_powertofly():
             tags = opportunity.find("p", class_ = "item-meta-infos").text.strip()
             start = cleantime(opportunity.find("span", class_ = "date").get('data-starts-at'))
             end = cleantime(opportunity.find("span", class_ = "date").get('data-ends-at'))
-            opportunity_names.append(name)
-            opportunity_link.append(link)
-            opportunity_image.append(image)
-            opportunity_tags.append(tags)
-            opportunity_starttime.append(start)
-            opportunity_endtime.append(end)
+            if status == "ongoing":
+                if (end > datetime.datetime.now(tzutc())) and (end <= (datetime.datetime.now(tzutc())+ datetime.timedelta(days=10))):
+                    print(search)
+                    if search == None:
+                        opportunity_names.append(name)
+                        opportunity_link.append(link)
+                        opportunity_image.append(image)
+                        opportunity_tags.append(tags)
+                        opportunity_starttime.append(start)
+                        opportunity_endtime.append(end)
+                    else:
+                        if (any(word in name.lower() for word in search.lower().split(" "))) or (any(word in tags.lower() for word in search.lower().split(" "))):
+                            opportunity_names.append(name)
+                            opportunity_link.append(link)
+                            opportunity_image.append(image)
+                            opportunity_tags.append(tags)
+                            opportunity_starttime.append(start)
+                            opportunity_endtime.append(end)
+                else:
+                    pass
+            elif status == "future":
+                if end > (datetime.datetime.now(tzutc())+ datetime.timedelta(days=10)):
+                    if search == None:
+                        opportunity_names.append(name)
+                        opportunity_link.append(link)
+                        opportunity_image.append(image)
+                        opportunity_tags.append(tags)
+                        opportunity_starttime.append(start)
+                        opportunity_endtime.append(end)
+                    else:
+                        if (any(word in name.lower() for word in search.lower().split(" "))) or (any(word in tags.lower() for word in search.lower().split(" "))):
+                            opportunity_names.append(name)
+                            opportunity_link.append(link)
+                            opportunity_image.append(image)
+                            opportunity_tags.append(tags)
+                            opportunity_starttime.append(start)
+                            opportunity_endtime.append(end)
+            else:
+                pass
         except:
-            print("invalid format") 
+            print("Invalid Format")
         
-
     return [opportunity_names, opportunity_link, opportunity_image, opportunity_tags, opportunity_starttime, opportunity_endtime]
 
 

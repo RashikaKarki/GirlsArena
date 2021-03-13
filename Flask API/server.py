@@ -15,7 +15,13 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/opportunities', methods=['GET'])
 def generate_uml():
     if request.method == 'GET':
-        data = collect_data()
-        print(data)
+        try:
+            status = request.args.get('status')
+            if status == None:
+                status = "ongoing"
+            search = request.args.get('search')
+        except:
+            status = "ongoing"
+        data = collect_data(status, search)
         return jsonify(data)
 

@@ -12,7 +12,7 @@ from datetime import datetime
     Clean date time
 '''
 def cleantime(date_time):
-    date = parser.parse(date_time)
+    date = parser.parse(date_time).tz_convert(None)  
     return date
 
 '''
@@ -64,7 +64,7 @@ def getdata_youthop():
                     opportunity_image.append(image)
                     opportunity_tags.append(tags)
                     opportunity_starttime.append(start)
-                    
+
                     opportunity_endtime.append(end)
             except:
                 print("invalid format") 
